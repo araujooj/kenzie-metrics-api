@@ -18,6 +18,11 @@ export default class CreateUsersTable1605554421774 implements MigrationInterface
             type: 'varchar',
           },
           {
+            name: 'email',
+            type: 'varchar',
+            isUnique: true,
+          },
+          {
             name: 'password',
             type: 'varchar',
           },
@@ -25,24 +30,6 @@ export default class CreateUsersTable1605554421774 implements MigrationInterface
             name: 'avatar',
             type: 'varchar',
             isNullable: true,
-          },
-          {
-            name: 'course_module',
-            type: 'varchar',
-          },
-          {
-            name: 'bio',
-            type: 'varchar',
-            length: '400',
-          },
-          {
-            name: 'contact',
-            type: 'varchar',
-          },
-          {
-            name: 'email',
-            type: 'varchar',
-            isUnique: true,
           },
           {
             name: 'created_at',

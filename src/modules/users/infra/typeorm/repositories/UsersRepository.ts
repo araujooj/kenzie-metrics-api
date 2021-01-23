@@ -15,19 +15,6 @@ implements IUsersRepository {
     this.ormRepository = getRepository(User)
   }
 
-  public async findByTech({ skip, take }: IPagination, tech: string): Promise<User[]> {
-    const query = await this.ormRepository
-      .createQueryBuilder('user')
-      .limit(take)
-      .offset(skip)
-      .leftJoinAndSelect('user.techs', 'techs')
-      .leftJoinAndSelect('user.works', 'works')
-      .where('techs.title like :tech', { tech: `%${tech}%` })
-      .getMany()
-
-    return query;
-  }
-
   public async findAll({ skip, take }: IPagination): Promise<User[]> {
     const users = await this.ormRepository.find({ skip, take });
 
@@ -64,15 +51,12 @@ implements IUsersRepository {
   }
 
   public async create({
-    name, email, password, bio, contact, course_module,
+    name, email, password,
   }: ICreateUserDTO): Promise<User> {
     const user = this.ormRepository.create({
       name,
       email,
       password,
-      bio,
-      contact,
-      course_module,
     })
 
     await this.ormRepository.save(user);

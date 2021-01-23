@@ -24,18 +24,12 @@ describe('UpdateProfile', () => {
       name: 'John Doe',
       email: 'johndoe@example.com',
       password: '123456',
-      bio: 'Lorem ipsum dolor emet',
-      contact: '123465789',
-      course_module: '1o modulo',
     });
 
     const updatedUser = await updateProfile.execute({
       user_id: user.id,
       name: 'John Trê',
       email: 'johntre@example.com',
-      bio: 'Lorem ipsum dolor emet',
-      contact: '123465789',
-      course_module: '1o modulo',
     });
 
     expect(updatedUser.name).toBe('John Trê');
@@ -48,9 +42,6 @@ describe('UpdateProfile', () => {
         user_id: 'non-existing-user-id',
         name: 'Test',
         email: 'test@example.com',
-        bio: 'Lorem ipsum dolor emet',
-        contact: '123465789',
-        course_module: '1o modulo',
       }),
     ).rejects.toBeInstanceOf(AppError);
   });
@@ -60,18 +51,12 @@ describe('UpdateProfile', () => {
       name: 'John Doe',
       email: 'johndoe@example.com',
       password: '123456',
-      bio: 'Lorem ipsum dolor emet',
-      contact: '123465789',
-      course_module: '1o modulo',
     });
 
     const user = await fakeUsersRepository.create({
       name: 'Test',
       email: 'test@example.com',
       password: '123456',
-      bio: 'Lorem ipsum dolor emet',
-      contact: '123465789',
-      course_module: '1o modulo',
     });
 
     await expect(
@@ -79,9 +64,7 @@ describe('UpdateProfile', () => {
         user_id: user.id,
         name: 'John Doe',
         email: 'johndoe@example.com',
-        bio: 'Lorem ipsum dolor emet',
-        contact: '123465789',
-        course_module: '1o modulo',
+
       }),
     ).rejects.toBeInstanceOf(AppError);
   });
@@ -91,9 +74,6 @@ describe('UpdateProfile', () => {
       name: 'John Doe',
       email: 'johndoe@example.com',
       password: '123456',
-      bio: 'Lorem ipsum dolor emet',
-      contact: '123465789',
-      course_module: '1o modulo',
     });
 
     const updatedUser = await updateProfile.execute({
@@ -102,9 +82,6 @@ describe('UpdateProfile', () => {
       email: 'johntre@example.com',
       old_password: '123456',
       password: '123123',
-      bio: 'Lorem ipsum dolor emet',
-      contact: '123465789',
-      course_module: '1o modulo',
     });
 
     expect(updatedUser.password).toBe('123123');
@@ -115,9 +92,6 @@ describe('UpdateProfile', () => {
       name: 'John Doe',
       email: 'johndoe@example.com',
       password: '123456',
-      bio: 'Lorem ipsum dolor emet',
-      contact: '123465789',
-      course_module: '1o modulo',
     });
 
     await expect(
@@ -126,9 +100,6 @@ describe('UpdateProfile', () => {
         name: 'John Trê',
         email: 'johntre@example.com',
         password: '123123',
-        bio: 'Lorem ipsum dolor emet',
-        contact: '123465789',
-        course_module: '1o modulo',
       }),
     ).rejects.toBeInstanceOf(AppError);
   });
@@ -138,9 +109,6 @@ describe('UpdateProfile', () => {
       name: 'John Doe',
       email: 'johndoe@example.com',
       password: '123456',
-      bio: 'Lorem ipsum dolor emet',
-      contact: '123465789',
-      course_module: '1o modulo',
     });
 
     await expect(
@@ -150,9 +118,6 @@ describe('UpdateProfile', () => {
         email: 'johntre@example.com',
         old_password: 'wrong-old-password',
         password: '123123',
-        bio: 'Lorem ipsum dolor emet',
-        contact: '123465789',
-        course_module: '1o modulo',
       }),
     ).rejects.toBeInstanceOf(AppError);
   });

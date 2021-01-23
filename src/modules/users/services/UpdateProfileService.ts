@@ -11,9 +11,6 @@ interface IRequest {
   user_id: string;
   name: string;
   email: string;
-  bio: string;
-  contact: string;
-  course_module:string;
   old_password?: string;
   password?: string;
 }
@@ -34,7 +31,6 @@ class UpdateProfileService {
     email,
     old_password,
     password,
-    bio, contact, course_module,
   }: IRequest): Promise<User> {
     const user = await this.usersRepository.findById(user_id);
 
@@ -50,9 +46,6 @@ class UpdateProfileService {
 
     name ? user.name = name : user.name
     email ? user.email = email : user.email;
-    bio ? user.bio = bio : user.bio;
-    contact ? user.contact = contact : user.contact;
-    course_module ? user.course_module = course_module : user.course_module;
 
     if (password && !old_password) {
       throw new AppError(

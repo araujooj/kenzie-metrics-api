@@ -53,9 +53,6 @@ export default class UsersControllers {
       name: yup.string().required('name is required'),
       email: yup.string().email('invalid email').required('email is required'),
       password: yup.string().required('password is required').min(6, 'password: minimum is 6 characters'),
-      bio: yup.string().required('bio is required'),
-      contact: yup.string().required('contact is required'),
-      course_module: yup.string().required('course_module is required'),
     })
 
     await schema.validate(request.body, { abortEarly: false }).catch(({ errors }) => {
@@ -63,7 +60,7 @@ export default class UsersControllers {
     })
 
     const {
-      name, email, password, bio, contact, course_module,
+      name, email, password,
     } = request.body;
 
     const createUser = container.resolve(CreateUserService);
@@ -72,9 +69,6 @@ export default class UsersControllers {
       name,
       email,
       password,
-      bio,
-      contact,
-      course_module,
     });
 
     return response.status(201).json(classToClass(user));

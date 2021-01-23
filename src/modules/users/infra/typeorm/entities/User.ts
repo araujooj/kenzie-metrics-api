@@ -8,8 +8,6 @@ import {
 } from 'typeorm';
 import uploadConfig from '@config/upload'
 import { Exclude, Expose } from 'class-transformer';
-import Tech from '@modules/techs/infra/typeorm/entities/Tech';
-import Work from '@modules/works/infra/typeorm/entities/Work';
 
 @Entity('users')
 class User {
@@ -29,21 +27,6 @@ class User {
   @Exclude()
   @Column()
   avatar: string;
-
-  @Column()
-  course_module: string;
-
-  @Column()
-  bio: string;
-
-  @Column()
-  contact: string;
-
-  @OneToMany(() => Tech, (techs) => techs.user, { eager: true, cascade: true })
-  techs: Tech[];
-
-  @OneToMany(() => Work, (works) => works.user, { eager: true })
-  works: Work[];
 
   @CreateDateColumn()
   created_at: Date;

@@ -23,9 +23,6 @@ export default class Profilecontroller {
       email,
       old_password,
       password,
-      bio,
-      contact,
-      course_module,
     } = request.body;
 
     const updateProfile = container.resolve(UpdateProfileService);
@@ -36,9 +33,6 @@ export default class Profilecontroller {
       email,
       old_password,
       password,
-      bio,
-      contact,
-      course_module,
     });
 
     return response.json(classToClass(user));

@@ -18,9 +18,6 @@ describe('UpdateProfile', () => {
       name: 'John Doe',
       email: 'johndoe@example.com',
       password: '123456',
-      bio: 'Lorem ipsum dolor emet',
-      contact: '123465789',
-      course_module: '1o modulo',
     });
 
     const profile = await showProfile.execute({

@@ -13,10 +13,6 @@ implements IUsersRepository {
     throw new Error('Method not implemented.');
   }
 
-  public async findByTech(pagination: IPagination, tech: string): Promise<User[]> {
-    throw new Error('Method not implemented.');
-  }
-
   public async findAll(): Promise<User[]> {
     return this.users;
   }
@@ -42,12 +38,12 @@ implements IUsersRepository {
   }
 
   public async create({
-    name, email, password, bio, contact, course_module,
+    name, email, password,
   }: ICreateUserDTO): Promise<User> {
     const user = new User();
 
     Object.assign(user, {
-      id: uuid(), name, email, password, bio, contact, course_module,
+      id: uuid(), name, email, password,
     })
 
     this.users.push(user)

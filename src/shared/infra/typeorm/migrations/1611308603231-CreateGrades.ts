@@ -1,10 +1,10 @@
 import { MigrationInterface, QueryRunner, Table } from 'typeorm';
 
-export default class CreateWorksTable1606950950213 implements MigrationInterface {
+export default class CreateGrades1611308603231 implements MigrationInterface {
   public async up(queryRunner: QueryRunner): Promise<void> {
     await queryRunner.createTable(
       new Table({
-        name: 'works',
+        name: 'grades',
         columns: [
           {
             name: 'id',
@@ -14,17 +14,34 @@ export default class CreateWorksTable1606950950213 implements MigrationInterface
             default: 'uuid_generate_v4()',
           },
           {
-            name: 'title',
-            type: 'varchar',
+            name: 'sprint1_grade',
+            type: 'integer',
+            isNullable: true,
           },
           {
-            name: 'description',
-            type: 'varchar',
-            length: '400',
+            name: 'sprint2_grade',
+            type: 'integer',
+            isNullable: true,
           },
           {
-            name: 'deploy_url',
-            type: 'varchar',
+            name: 'sprint3_grade',
+            type: 'integer',
+            isNullable: true,
+          },
+          {
+            name: 'sprint4_grade',
+            type: 'integer',
+            isNullable: true,
+          },
+          {
+            name: 'sprint5_grade',
+            type: 'integer',
+            isNullable: true,
+          },
+          {
+            name: 'sprint6_grade',
+            type: 'integer',
+            isNullable: true,
           },
           {
             name: 'created_at',
@@ -42,6 +59,6 @@ export default class CreateWorksTable1606950950213 implements MigrationInterface
   }
 
   public async down(queryRunner: QueryRunner): Promise<void> {
-    await queryRunner.dropTable('works');
+    await queryRunner.dropTable('grades');
   }
 }
