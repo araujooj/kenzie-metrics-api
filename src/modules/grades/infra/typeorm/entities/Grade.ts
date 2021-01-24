@@ -1,10 +1,12 @@
+import Student from '@modules/students/infra/typeorm/entities/Student';
 import {
   Entity,
   Column,
   PrimaryGeneratedColumn,
   CreateDateColumn,
   UpdateDateColumn,
-  OneToMany,
+  OneToOne,
+  JoinColumn,
 } from 'typeorm';
 
 @Entity('grades')
@@ -13,22 +15,26 @@ class Grade {
  id: string;
 
  @Column()
- name: string;
+ sprint1_grade: number;
 
  @Column()
- quarter: 'Q1' | 'Q2' | 'Q3' | 'Q4';
+ sprint2_grade: number;
 
  @Column()
- discipline: number;
+ sprint3_grade: number;
 
  @Column()
- proactivity: number;
+ sprint4_grade: number;
 
  @Column()
- communication: number;
+ sprint5_grade: number;
 
  @Column()
- technical_level: number;
+ sprint6_grade: number;
+
+ @OneToOne(() => Student, (students) => students.grade)
+ @JoinColumn({ name: 'student_id' })
+ student: Student
 
  @CreateDateColumn()
  created_at: Date;

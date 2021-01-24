@@ -21,6 +21,6 @@ describe('FindUsers', () => {
 
     const user = await findUserService.execute({ skip: 1, take: 1 })
 
-    expect(user).toBeTruthy()
+    expect(user).toHaveLength(1)
   })
 })

@@ -1,3 +1,4 @@
+import Grade from '@modules/grades/infra/typeorm/entities/Grade';
 import {
   Entity,
   Column,
@@ -5,6 +6,7 @@ import {
   CreateDateColumn,
   UpdateDateColumn,
   OneToMany,
+  OneToOne,
 } from 'typeorm';
 
 @Entity('students')
@@ -29,6 +31,9 @@ class Student {
 
  @Column()
  technical_level: number;
+
+ @OneToOne(() => Grade, (grades) => grades.student, { eager: true })
+ grade: Grade;
 
  @CreateDateColumn()
  created_at: Date;
