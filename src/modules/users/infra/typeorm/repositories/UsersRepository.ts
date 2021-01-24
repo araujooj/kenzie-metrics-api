@@ -63,10 +63,6 @@ implements IUsersRepository {
 
     return user;
   }
-
-  public async delete(id: string): Promise<void | DeleteResult> {
-    return this.ormRepository.delete(id);
-  }
 }
 
 export default UsersRepository;

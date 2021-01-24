@@ -15,13 +15,11 @@ const profileController = new ProfileController()
 
 userRouter.post('/', userController.create);
 
+userRouter.use(ensureAuth);
+
 userRouter.get('/', usePagination, userController.index);
 
 userRouter.get('/:id', userController.show);
-
-userRouter.delete('/:id', userController.delete)
-
-userRouter.use(ensureAuth);
 
 userRouter.patch(
   '/avatar', upload.single('avatar'), userAvatarController.update,

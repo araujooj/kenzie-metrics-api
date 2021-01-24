@@ -1,32 +1,14 @@
 import CreateUserService from '@modules/users/services/CreateUserService';
 import FindUsersService from '@modules/users/services/FindUsersService';
 import FindSpecificUserService from '@modules/users/services/FindSpecificUserService';
-import DeleteUserService from '@modules/users/services/DeleteUserService';
 import * as yup from 'yup';
 import { Request, Response } from 'express';
 import { container } from 'tsyringe';
 import { classToClass } from 'class-transformer';
 import AppError from '@shared/errors/AppError';
 
-interface IRequest {
-  tech: string;
-}
-
 export default class UsersControllers {
   public async index(request: Request, response: Response): Promise<Response> {
-    const { tech } = request.query as unknown as IRequest;
-
-    if (tech) {
-      const users = container.resolve(FindUsersService);
-
-      const findUsers = await users.execute({
-        skip: request.pagination.realPage,
-        take: request.pagination.realTake,
-      }, tech);
-
-      return response.status(200).json(classToClass(findUsers));
-    }
-
     const users = container.resolve(FindUsersService);
 
     const findUsers = await users.execute({
@@ -72,17 +54,5 @@ export default class UsersControllers {
     });
 
     return response.status(201).json(classToClass(user));
-  }
-
-  public async delete(request: Request, response: Response): Promise<Response> {
-    const { id } = request.params;
-
-    const user = container.resolve(DeleteUserService)
-
-    await user.execute({
-      id,
-    })
-
-    return response.status(204).json()
   }
 }

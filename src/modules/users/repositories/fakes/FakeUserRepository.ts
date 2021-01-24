@@ -9,10 +9,6 @@ class UsersRepository
 implements IUsersRepository {
   private users: User[] = []
 
-  public async delete(id: string): Promise<void | DeleteResult> {
-    throw new Error('Method not implemented.');
-  }
-
   public async findAll(): Promise<User[]> {
     return this.users;
   }
